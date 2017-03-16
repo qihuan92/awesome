@@ -27,7 +27,7 @@ public class HttpAspect {
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint) {
-        LOGGER.info("---Request---");
+        LOGGER.info("Request----->");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         // url
@@ -50,6 +50,6 @@ public class HttpAspect {
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
         LOGGER.info("response={}", object.toString());
-        LOGGER.info("---Finish---");
+        LOGGER.info("----->Finish");
     }
 }
