@@ -1,5 +1,7 @@
 package com.qihuan.exception;
 
+import com.qihuan.tools.ResultEnum;
+
 /**
  * ApiException
  * Created by Qi on 2017/3/16.
@@ -8,9 +10,9 @@ public class ApiException extends RuntimeException {
 
     private Integer code;
 
-    public ApiException(Integer code, String message) {
-        super(message);
-        this.code = code;
+    public ApiException(ResultEnum resultEnum) {
+        super(resultEnum.getMsg());
+        this.code = resultEnum.getCode();
     }
 
     public Integer getCode() {
