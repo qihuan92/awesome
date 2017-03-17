@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * UserRepository
  * Created by Qi on 2017/3/14.
  */
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
     User findByUserName(String userName);
 }

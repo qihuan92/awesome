@@ -6,7 +6,8 @@ package com.qihuan.tools;
  */
 public enum ResultEnum {
     SUCCESS(0, "成功"),
-    UNKNOWN_ERROR(1, "未知错误");
+    UNKNOWN_ERROR(1, "未知错误"),
+    USER_EXISTED(2, "用户已存在");
 
     private Integer code;
 

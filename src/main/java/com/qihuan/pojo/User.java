@@ -1,9 +1,8 @@
 package com.qihuan.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * user
@@ -13,9 +12,12 @@ import javax.persistence.Table;
 @Table(name = "t_user")
 public class User {
     @Id
-    @GeneratedValue
-    private Long id;
+    @Column(name = "id", nullable = false, length = 32, unique = true)
+    @GenericGenerator(name = "generator", strategy = "uuid.hex")
+    @GeneratedValue(generator = "generator")
+    private String id;
 
+    @Column(name = "userName", nullable = false, unique = true)
     private String userName;
 
     private String password;
@@ -26,11 +28,11 @@ public class User {
 
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

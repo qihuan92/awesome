@@ -1,8 +1,10 @@
 package com.qihuan.service.impl;
 
+import com.qihuan.exception.ApiException;
 import com.qihuan.pojo.User;
 import com.qihuan.repository.UserRepository;
 import com.qihuan.service.UserService;
+import com.qihuan.tools.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void register(User user) {
+        if (userRepository.findByUserName(user.getUserName()) != null) {
+            throw new ApiException(ResultEnum.USER_EXISTED);
+        }
         userRepository.save(user);
     }
 
