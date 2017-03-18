@@ -33,7 +33,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String userName) {
-        return userRepository.findByUserName(userName);
+        User user = userRepository.findByUserName(userName);
+        if (user == null) {
+            throw new ApiException(ResultEnum.USER_NO_EXIST);
+        }
+        return user;
     }
 
     @Override

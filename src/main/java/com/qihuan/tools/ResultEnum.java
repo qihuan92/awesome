@@ -7,7 +7,8 @@ package com.qihuan.tools;
 public enum ResultEnum {
     SUCCESS(0, "成功"),
     UNKNOWN_ERROR(1, "未知错误"),
-    USER_EXISTED(2, "用户已存在");
+    USER_EXISTED(2, "用户已存在"),
+    USER_NO_EXIST(3, "用户不存在");
 
     private Integer code;
 
