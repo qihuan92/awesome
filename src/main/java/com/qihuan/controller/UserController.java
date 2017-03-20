@@ -35,12 +35,9 @@ public class UserController {
 
     @RequestMapping("/userList")
     @ResponseBody
-    public Result userList(@RequestParam(required = false) Integer page,
-                           @RequestParam(required = false) Integer size) {
-        if (page == null) {
-            return Result.create(0, Const.SUCCESS, userService.userList());
-        }
-        return Result.create(0, Const.SUCCESS, userService.userList(page, size == null ? 20 : size));
+    public Result userList(@RequestParam(defaultValue = "0") int page,
+                           @RequestParam(defaultValue = "10") int size) {
+        return Result.create(0, Const.SUCCESS, userService.userList(page, size));
     }
 
     @RequestMapping("/getUser")

@@ -46,9 +46,4 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll(new PageRequest(page, size)).getContent();
     }
 
-    @Override
-    public List<User> userList() {
-        return userRepository.findAll();
-    }
-
 }
