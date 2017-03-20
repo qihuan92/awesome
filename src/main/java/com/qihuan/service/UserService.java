@@ -14,5 +14,7 @@ public interface UserService {
 
     User getUser(String userName);
 
+    List<User> userList(int page, int size);
+
     List<User> userList();
 }

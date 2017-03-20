@@ -6,6 +6,7 @@ import com.qihuan.repository.UserRepository;
 import com.qihuan.service.UserService;
 import com.qihuan.tools.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -41,9 +42,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> userList(int page, int size) {
+        return userRepository.findAll(new PageRequest(page, size)).getContent();
+    }
+
+    @Override
     public List<User> userList() {
         return userRepository.findAll();
     }
-
 
 }
