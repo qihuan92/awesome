@@ -22,7 +22,7 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result errResult(Exception e) {
-        LOGGER.info("[Exception]--->", e);
+        LOGGER.warn("[Exception]--->", e);
         if (e instanceof ApiException) {
             return Result.create(((ApiException) e).getCode(), e.getMessage(), null);
         }
