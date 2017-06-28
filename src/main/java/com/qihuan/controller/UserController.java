@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * UserController
  * Created by Qi on 2017/3/14.
  */
-@Api(value="用户管理",tags = {"用户管理API"},description = "用户管理接口")
+@Api(value = "用户管理", tags = {"用户管理API"}, description = "用户管理接口")
 @RestController
 @RequestMapping("/user")
 public class UserController {

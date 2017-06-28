@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: dev
-#    active: prod
-
+swagger:
+  ui:
+    title: 用户管理
+    contact: 齐欢
+    version: 1.0
+    description: 用户管理
+    group: qi
 
