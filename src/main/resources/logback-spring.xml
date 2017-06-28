@@ -25,11 +25,23 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
             <fileNamePattern>${LOG_HOME}/mixedSys.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
+        <!--日志文件最大的大小-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
     </appender>
+
+    <logger name="org.springframework.data" level="info"/>
+    <logger name="org.springframework.web" level="info"/>
+    <logger name="org.springframework.security" level="info"/>
+    <logger name="org.springframework.security.web" level="info"/>
+    <logger name="org.springframework.security.access.intercept" level="info"/>
 
     <!-- 日志输出级别 -->
     <!-- 测试环境 -->

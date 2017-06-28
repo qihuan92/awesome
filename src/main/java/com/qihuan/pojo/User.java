@@ -1,31 +1,41 @@
 package com.qihuan.pojo;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 /**
  * user
  * Created by Qi on 2017/3/14.
  */
-@Entity
-@Table(name = "t_user")
+@Document(collection = "user")
 public class User {
     @Id
-    @Column(name = "id", nullable = false, length = 32, unique = true)
-    @GenericGenerator(name = "generator", strategy = "uuid.hex")
-    @GeneratedValue(generator = "generator")
     private String id;
 
-    @Column(name = "userName", nullable = false, unique = true)
-    private String userName;
+    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
+    private String username;
 
     private String password;
-
-    private String nickName;
+    private String email;
+    private Date lastPasswordResetDate;
+    private List<String> roles;
 
     public User() {
 
+    }
+
+    public User(String id, String username, String password, String email, Date lastPasswordResetDate, List<String> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.lastPasswordResetDate = lastPasswordResetDate;
+        this.roles = roles;
     }
 
     public String getId() {
@@ -36,12 +46,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -52,21 +62,39 @@ public class User {
         this.password = password;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", nickName='" + nickName + '\'' +
+                ", email='" + email + '\'' +
+                ", lastPasswordResetDate=" + lastPasswordResetDate +
+                ", roles=" + roles +
                 '}';
     }
 }

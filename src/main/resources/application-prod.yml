@@ -1,14 +1,7 @@
 server:
   port: 9999
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/demo?useSSL=false
-    username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/awesome
 

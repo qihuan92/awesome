@@ -15,4 +15,8 @@ public interface UserService {
     User getUser(String userName);
 
     List<User> userList(int page, int size);
+
+    String login(String username, String password);
+
+    String refresh(String oldToken);
 }

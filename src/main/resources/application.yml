@@ -8,4 +8,8 @@ swagger:
     version: 1.0
     description: 用户管理
     group: qi
-
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  tokenHead: "Bearer "
