@@ -1,6 +1,6 @@
-package com.qihuan.factory;
+package com.qihuan.security.factory;
 
-import com.qihuan.pojo.JwtUser;
+import com.qihuan.security.bean.SecurityUser;
 import com.qihuan.pojo.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,14 +8,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class JwtUserFactory {
+public final class UserFactory {
 
-    private JwtUserFactory() {
+    private UserFactory() {
 
     }
 
-    public static JwtUser create(User user) {
-        return new JwtUser(
+    public static SecurityUser create(User user) {
+        return new SecurityUser(
                 user.getId(),
                 user.getUsername(),
                 user.getPassword(),

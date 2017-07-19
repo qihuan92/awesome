@@ -1,6 +1,5 @@
-package com.qihuan.pojo;
+package com.qihuan.security.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,10 +7,10 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
- * JwtUser
+ * SecurityUser
  * Created by Qi on 2017/3/14.
  */
-public class JwtUser implements UserDetails {
+public class SecurityUser implements UserDetails {
 
     private final String id;
     private final String username;
@@ -20,7 +19,7 @@ public class JwtUser implements UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
     private final Date lastPasswordResetDate;
 
-    public JwtUser(
+    public SecurityUser(
             String id,
             String username,
             String password,
@@ -40,12 +39,10 @@ public class JwtUser implements UserDetails {
         return authorities;
     }
 
-    @JsonIgnore
     public String getId() {
         return id;
     }
 
-    @JsonIgnore
     @Override
     public String getPassword() {
         return password;
@@ -56,31 +53,26 @@ public class JwtUser implements UserDetails {
         return username;
     }
 
-    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
     }
 
-    @JsonIgnore
     public Date getLastPasswordResetDate() {
         return lastPasswordResetDate;
     }

@@ -4,3 +4,9 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/awesome
+  redis:
+    database: 4
+    host: localhost
+    password: ejiaoji2016
+    port: 6379
+    timeout: 2000

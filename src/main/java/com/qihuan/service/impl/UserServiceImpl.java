@@ -1,7 +1,7 @@
 package com.qihuan.service.impl;
 
 import com.qihuan.exception.ApiException;
-import com.qihuan.pojo.JwtUser;
+import com.qihuan.security.bean.SecurityUser;
 import com.qihuan.pojo.User;
 import com.qihuan.repository.UserRepository;
 import com.qihuan.security.JwtTokenUtil;
@@ -84,15 +84,14 @@ public class UserServiceImpl implements UserService {
         final Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        final String token = jwtTokenUtil.generateToken(userDetails);
-        return token;
+        return jwtTokenUtil.generateToken(userDetails);
     }
 
     @Override
     public String refresh(String oldToken) {
         final String token = oldToken.substring(tokenHead.length());
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+        SecurityUser user = (SecurityUser) userDetailsService.loadUserByUsername(username);
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())){
             return jwtTokenUtil.refreshToken(token);
         }
