@@ -40,7 +40,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security")
     compile('mysql:mysql-connector-java')
     compile("com.ejiaoji:spring-boot-starter-swagger:0.0.1-RELEASE")
-    compile("com.ejiaoji:pomelo:0.0.1")
+    compile("com.ejiaoji:pomelo:0.0.1-RELEASE")
     compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
     compile("cn.apiclub.tool:simplecaptcha:1.2.2")
 }

@@ -18,8 +18,6 @@ public class PomeloService {
     @Value("${pomelo.address}")
     private String address;
 
-    private boolean flag;
-
     public String login(String phone, String password) {
         JSONObject json = new JSONObject();
         json.put("phone", phone);
@@ -28,38 +26,47 @@ public class PomeloService {
         return pomelo(route, json.toString());
     }
 
+    public String user(String gameId) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        String route = "proxysvr.proxyHandler.exists";
+        return pomelo(route, json.toString());
+    }
+
     private String pomelo(String route, String arg) {
+        final boolean[] flag = {false};
         final String[] response = new String[1];
+        PomeloClient client = null;
         try {
-            PomeloClient client = new PomeloClient(new URI(address));
+            client = new PomeloClient(new URI(address));
             client.setOnHandshakeSuccessHandler((client1, resp) -> {
                 try {
                     client1.request(route, arg, message -> {
-                        try {
-                            JSONObject bodyJson = message.getBodyJson();
-                            response[0] = bodyJson.toString();
-                            flag = true;
-                        } catch (Exception e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                            flag = true;
-                        }
+                        JSONObject bodyJson = message.getBodyJson();
+                        response[0] = bodyJson.toString();
+                        flag[0] = true;
                     });
                 } catch (Exception e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                    flag = true;
+                    response[0] = e.toString();
+                    flag[0] = true;
                 }
             });
             client.setOnErrorHandler(e -> {
-                e.printStackTrace();
                 response[0] = e.getMessage();
-                flag = true;
+                flag[0] = true;
             });
             client.connect();
-            while (!flag) {
+
+            while (!flag[0]) {
                 Thread.sleep(100);
             }
+
         } catch (URISyntaxException | InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            response[0] = e.toString();
+        } finally {
+            if (client != null) {
+                client.close();
+            }
         }
         return response[0];
     }

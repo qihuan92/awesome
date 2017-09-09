@@ -14,4 +14,5 @@ jwt:
   expiration: 604800
   tokenHead: "Bearer "
 pomelo:
-  address: ws://101.37.161.243:3010
+#  address: ws://192.168.1.185:33009
+  address: ws://101.37.161.243:33009

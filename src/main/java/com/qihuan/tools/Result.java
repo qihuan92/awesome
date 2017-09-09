@@ -2,7 +2,7 @@ package com.qihuan.tools;
 
 /**
  * Result Data
- * Created by Qi on 2017/3/14.
+ * Created by Qi on 2017/3/14
  */
 public class Result<T> {
     private int code;
